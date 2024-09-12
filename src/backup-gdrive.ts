@@ -18,7 +18,7 @@ const auth = new JWT({
 
 const gdrive = drive({
   version: "v3",
-  auth: auth,
+  auth: auth
 });
 
 const deleteStaleBackups = async (cutOffDate: Date) => {
@@ -58,7 +58,7 @@ const deleteStaleBackups = async (cutOffDate: Date) => {
 const dumpToFile = async (filepath: string) => {
   return new Promise((resolve, reject) => {
     exec(
-      `pg_dump --dbname=${env.DATABASE_URL} --format=tar | gzip > ${filepath}`,
+      `pg_dump --dbname=${env.DATABASE_URL} --format=custom | gzip > ${filepath}`,
       (err, stdout, stderr) => {
         if (err) {
           reject({
